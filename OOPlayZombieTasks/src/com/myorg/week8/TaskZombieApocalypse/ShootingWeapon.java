@@ -1,24 +1,35 @@
 package com.myorg.week8.TaskZombieApocalypse;
 
-/**
- * Created by misho on 02.02.17.
- */
-public class ShootingWeapon extends Weapon {
+public class ShootingWeapon implements IWeapon {
 
+    private int damage;
+    private int durability;
+    private WeaponType typeWeapon;
 
+    public ShootingWeapon(WeaponType weaponType){
+        this.typeWeapon = weaponType;
+
+        switch (weaponType){
+            case Shotgun: this.damage = 25; this.durability = 10; break;
+            case Revolver: this.damage = 15; this.durability = 6; break;
+        }
+    }
 
     @Override
     public int getDamage() {
-        return 0;
+        if (getDurability() > 1){
+            this.durability -= 1;
+        }
+        return this.damage;
     }
 
     @Override
     public int getDurability() {
-        return 0;
+        return this.durability;
     }
 
     @Override
     public String getType() {
-        return null;
+        return "TO_SHOOT";
     }
 }
